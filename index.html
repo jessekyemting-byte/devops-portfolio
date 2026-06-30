@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jesse Kyemting | Portfolio</title>
+  <style>
+    /* --- THEME DESIGN SYSTEM --- */
+    :root {
+      --background: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;         /* Developer Blue */
+      --accent-dim: #1f6feb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    /* --- LAYOUT STRUCTURE --- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-family: monospace;
+      margin-top: 4px;
+    }
+
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 32px;
+    }
+
+    /* --- LEFT MAIN CONTENT --- */
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+    }
+
+    .section-title {
+      font-family: monospace;
+      color: var(--accent);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title::before {
+      content: "$ ";
+      color: var(--text-muted);
+    }
+
+    .card {
+      border-left: 2px solid var(--border);
+      padding-left: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .card-meta {
+      font-family: monospace;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* --- RIGHT SIDEBAR --- */
+    aside {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* PORTRAIT CONTAINER */
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden; 
+      transition: border-color 0.3s ease;
+    }
+
+    .image-wrapper {
+      width: 100%;
+      position: relative;
+      background: #000;
+      display: flex;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .profile-card:hover {
+      border-color: var(--accent);
+    }
+
+    .profile-card:hover .profile-img {
+      transform: scale(1.02);
+    }
+
+    /* CONTACT DETAILS BLOCK */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-item {
+      font-family: monospace;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .contact-label {
+      color: var(--text-muted);
+    }
+
+    .contact-value {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- TAG CLOUDS --- */
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-family: monospace;
+      background: var(--background);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+
+    /* --- RESPONSIVE DESIGN --- */
+    @media (max-width: 850px) {
+      .layout-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      aside {
+        grid-row: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header>
+      <h1>Jesse Kyemting</h1>
+      <p>~/professional-portfolio --live</p>
+    </header>
+
+    <div class="layout-grid">
+      
+      <!-- MAIN BODY (LEFT) -->
+      <main>
+        <section id="profile">
+          <div class="section-title">cat profile.md</div>
+          <p>Technical consultant specializing in CRM systems architecture, automated logic orchestrations, and scalable deployment pipelines. Experienced in managing structured system flows and deploying production codebases within secure cloud ecosystems.</p>
+        </section>
+
+        <section id="experience">
+          <div class="section-title">ls experience/</div>
+          
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Salesforce Consultant</span>
+              <span class="card-meta">2025.02 - 2025.07</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 6px;">Dklouds</p>
+            <p>Managed advanced architecture components including complex CPQ configuration, custom currency alignments inside Price Books, and tailored automation workflows using Flow builder and Agentforce protocols.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">AI Infrastructure & Verification Lead</span>
+              <span class="card-meta">2023.04 - 2024.03</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 6px;">Remotask Platform</p>
+            <p>Headed logical fact-checking and Reinforcement Learning from Human Feedback (RLHF) initiatives across multiple framework optimization pipelines—including specialized projects like Flamingo, Dolphin, and Observatory Sphere.</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- SIDEBAR (RIGHT) -->
+      <aside>
+        <!-- 1. PORTRAIT BLOCK (FIRST) -->
+        <div class="profile-card">
+          <div class="image-wrapper">
+            <img src="629738367_2726315457767243_6447268800463382477_n.jpg" alt="Jesse Kyemting portrait" class="profile-img">
+          </div>
+        </div>
+
+        <!-- 2. CONTACT DETAILS BLOCK (SECOND) -->
+        <section id="contact">
+          <div class="section-title">cat contact.json</div>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-label">email:</span>
+              <span class="contact-value"><a href="mailto:jesse@example.com">jesse@example.com</a></span>
+            </li>
+            <li class="contact-item">
+              <span class="contact-label">github:</span>
+              <span class="contact-value"><a href="https://github.com" target="_blank">github.com/jesse</a></span>
+            </li>
+            <li class="contact-item">
+              <span class="contact-label">location:</span>
+              <span class="contact-value">Abuja, Nigeria</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3. SKILLS CLOUD -->
+        <section id="skills">
+          <div class="section-title">echo $SKILLS</div>
+          <div class="tag-group">
+            <span class="tag">Salesforce CPQ</span>
+            <span class="tag">Zoho CRM</span>
+            <span class="tag">Agentforce</span>
+            <span class="tag">Docker</span>
+            <span class="tag">AWS (EC2/Nginx)</span>
+            <span class="tag">RLHF Optimization</span>
+            <span class="tag">Ubuntu Server</span>
+          </div>
+        </section>
+      </aside>
+
+    </div>
+  </div>
+
+</body>
+</html>
