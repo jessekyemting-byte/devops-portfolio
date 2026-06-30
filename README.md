@@ -1,0 +1,7 @@
+# Automated DevOps Portfolio Deployment Pipeline
+
+## How the Pipeline Works
+This project implements a continuous deployment (CD) pipeline using GitHub Actions to automate hosting an interactive terminal-themed portfolio website on an AWS EC2 instance. Whenever updates are pushed to the `main` branch of this repository, a GitHub Actions workflow triggers automatically. The workflow utilizes encrypted GitHub Secrets (`EC2_HOST`, `EC2_USERNAME`, and `EC2_SSH_KEY`) to establish a secure SSH connection with the remote cloud server. Once connected, the automated runner navigates to the Apache web server directory (`/var/www/html`), fetches the latest updates from GitHub, and resets the directory state to match the repository's `main` branch. This entirely eliminates manual file transfers and ensures the live portfolio updates instantaneously.
+
+## Challenges Encountered & Resolutions
+During implementation, initial setup steps threw user and group assignment errors because system administration commands were mistakenly executed in the local Windows WSL shell rather than within the active cloud server. This was resolved by locating the correct browser-based EC2 Instance Connect utility to run configuration tasks inside the true remote instance. Additionally, deployment tasks temporarily stalled due to confusion over the active operating system environment, which required cross-verifying the instance's Amazon Machine Image (AMI) profile to confirm full Ubuntu compatibility and ensure standard Debian package manager commands executed smoothly.
