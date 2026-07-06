@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:21-alpine' 
-            args '-p 3000:80'    
+            // Stripped out the -p argument here so Jenkins doesn't clash with your live site
         }
     }
     stages {
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo 'Deploying static files permanently to production Nginx server...'
                 
-                // This script stops any old version of your site and spins up a fresh detached one mapping your real code folder
+                // This step safely clears any old container and maps your code cleanly
                 sh '''
                     docker rm -f my-live-portfolio || true
                     docker run -d -p 3000:80 --name my-live-portfolio -v "$(pwd)":/usr/share/nginx/html nginx:alpine
@@ -38,7 +38,6 @@ pipeline {
         stage('Cleanup') {
             steps {
                 echo 'Cleaning up pipeline agent files...'
-                // We skip cleanWs() here so the volume mapping to the live container has access to your index.html
             }
         }
     }
