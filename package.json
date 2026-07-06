@@ -1,0 +1,8 @@
+{
+  "name": "devops-portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "echo 'Building static assets...'",
+    "start": "echo 'Running portfolio app...'"
+  }
+}
