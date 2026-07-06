@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:21-alpine' 
-            args '-p 3000:3000'    
+            args '-p 3000:80'    
         }
     }
     stages {
@@ -26,14 +26,19 @@ pipeline {
         }
         stage('Run Application') {
             steps {
-                echo 'Launching the Portfolio live...'
-                sh 'npm start &' 
+                echo 'Deploying static files permanently to production Nginx server...'
+                
+                // This script stops any old version of your site and spins up a fresh detached one mapping your real code folder
+                sh '''
+                    docker rm -f my-live-portfolio || true
+                    docker run -d -p 3000:80 --name my-live-portfolio -v "$(pwd)":/usr/share/nginx/html nginx:alpine
+                '''
             }
         }
         stage('Cleanup') {
             steps {
-                echo 'Cleaning up workspace to free up server storage...'
-                cleanWs()
+                echo 'Cleaning up pipeline agent files...'
+                // We skip cleanWs() here so the volume mapping to the live container has access to your index.html
             }
         }
     }
