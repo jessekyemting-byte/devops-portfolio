@@ -2,7 +2,8 @@ pipeline {
     agent {
         docker {
             image 'node:21-alpine' 
-            // Stripped out the -p argument here so Jenkins doesn't clash with your live site
+            // Mounts your machine's Docker engine into the container so 'sh docker' works
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     stages {
@@ -27,8 +28,6 @@ pipeline {
         stage('Run Application') {
             steps {
                 echo 'Deploying static files permanently to production Nginx server...'
-                
-                // This step safely clears any old container and maps your code cleanly
                 sh '''
                     docker rm -f my-live-portfolio || true
                     docker run -d -p 3000:80 --name my-live-portfolio -v "$(pwd)":/usr/share/nginx/html nginx:alpine
