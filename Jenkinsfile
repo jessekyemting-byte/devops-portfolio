@@ -26,10 +26,15 @@ pipeline {
         stage('Build & Deploy') {
             steps {
                 echo 'Stopping and cleaning up any older container instances...'
-                sh 'docker compose down --remove-orphans || true'
+                // Stops and removes the container if it exists; || true prevents crashing if it doesn't exist yet
+                sh 'docker stop kyemting-site || true'
+                sh 'docker rm kyemting-site || true'
                 
-                echo 'Building images and launching the application containers...'
-                sh 'docker compose up -d --build'
+                echo 'Building the fresh Docker image...'
+                sh 'docker build -t website-img .'
+                
+                echo 'Launching the new application container...'
+                sh 'docker run -d -p 80:80 --name kyemting-site website-img'
             }
         }
     }
