@@ -122,6 +122,6 @@ This command securely established a public, encrypted endpoint proxy (`https://a
 The final implementation completely satisfies all guidelines outlined in the cohort requirements. The corresponding verified proof data consists of:
 
 1. **GitHub Repository State:** Accessible via this active codebase.
-2. **Pipeline Execution Integrity:** Verified via the Jenkins status portal: ![Jenkins Pipeline Success](Jenkins success.jpg)
-3. **Webhook Ingress Validation:** Verified via GitHub Webhook tracking: ![GitHub Webhook Verification](GitHub Webhook.jpg)
-4. **Application Browser Accessibility:** Live production instance environment verification: ![Live Portfolio App](Jenkins portfolio running app.jpg)
+2. **Pipeline Execution Integrity:** Verified via the Jenkins status portal: ![Jenkins pipeline build #19 succeeded, showing green checkmark status, commit revision, and 42 second build time](Jenkins_success.jpg)
+3. **Webhook Ingress Validation:** Verified via GitHub Webhook tracking: ![GitHub webhook recent deliveries showing a successful green checkmark ping delivery](GitHub_Webhook.jpg)
+4. **Application Browser Accessibility:** Live production instance environment verification: ![Live portfolio site for Jesse Kyemting running in production, showing a dark terminal-themed UI with profile, experience, and skills sections](Jenkins_portfolio_running_app.jpg)
