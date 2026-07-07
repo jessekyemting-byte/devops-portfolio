@@ -19,21 +19,24 @@ pipeline {
             steps {
                 echo 'Verifying dependencies on the remote Ubuntu server...'
                 sh 'java -version'
-                sh 'docker --version || echo "Docker not installed yet"'
+                sh 'docker --version'
             }
         }
 
         stage('Build & Deploy') {
             steps {
-                echo 'Your custom application build or deployment commands run here.'
-                // Example: sh 'docker compose up -d --build'
+                echo 'Stopping and cleaning up any older container instances...'
+                sh 'docker compose down --remove-orphans || true'
+                
+                echo 'Building images and launching the application containers...'
+                sh 'docker compose up -d --build'
             }
         }
     }
 
     post {
         success {
-            echo 'Pipeline successfully executed on the remote AWS server!'
+            echo 'Pipeline successfully executed and app deployed on the remote AWS server!'
         }
         failure {
             echo 'Something went wrong during execution.'
